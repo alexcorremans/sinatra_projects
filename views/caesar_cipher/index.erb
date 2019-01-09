@@ -1,0 +1,11 @@
+<h1>Caesar Cipher</h1>
+<p><a href="https://en.wikipedia.org/wiki/Caesar_cipher" target="_blank">What's a Caesar Cipher?</a>
+<form action="/caesar_cipher" method="post">
+  <p>Text: <input type="text" name="text" value="<%= @text %>"></p>
+  <p>Number: <input type="number" name="number" value="<%= @number %>" min="0" max="26"></p>
+  <input type="submit" value="Encrypt">
+  <% if @message %>
+    <%= @message %>
+  <% end %>
+</form>
+<p><a href="/">Back</a></p>

@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Guess the Number</title>
+    <style>
+      body {
+        background: <%= colour %>;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      <%= message %>
+    </p>
+    <% if message == "You got it right!" %>
+      <p>
+      The SECRET NUMBER is <%= number %>
+      </p>
+    <% end %>
+    <% if cheat %>
+      <p>
+      The SECRET NUMBER is <%= number %>. You cheater!
+      </p>
+    <% end %>
+    <form>
+      <input type='text' name='guess' />
+      <input type='submit' value='Guess!' />
+    </form>
+    <p><a href="/">Back</a></p>
+  </body>
+</html>
