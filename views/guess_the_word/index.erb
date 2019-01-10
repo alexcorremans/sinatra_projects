@@ -1,9 +1,9 @@
 <h1>Guess the Word</h1>
+<p><%= @word.join(" ") %></p>
 <% if @message %>
   <p><%= @message %></p>
 <% end %>
-<p><%= @word.join(" ") %></p>
-<% if !@game_ended %>
+<% unless @game_ended %>
   <p>Guesses left: <%= @guesses %></p>
   <form action="/guess_the_word" method="post">
     <p>Enter a letter: 
@@ -15,14 +15,12 @@
     </script>
     <input type="submit" value="Guess!"></p>
   </form>
-  <% if @letters %>
-    <p>Previous wrong choices: <%= @letters.join(", ") %></p>
+  <% if @wrong_letters %>
+    <p>Previous wrong choices: <%= @wrong_letters.join(", ") %></p>
   <% end %>
   <% if @cheat %>
     <p>The solution is <%= @solution.join("")%>. Cheater!</p>
   <% end %>
-<% elsif @game_over %>
-  <p>Game over! The word was: <%= @solution.join("")%></p>
 <% end %>
 <form action="/guess_the_word/new" method="post">
   <input type="submit" value="New Game">

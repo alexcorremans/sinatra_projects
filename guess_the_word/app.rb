@@ -13,8 +13,7 @@ get '/guess_the_word' do
   @game_ended = game.ended?
   @guesses = game.guesses
   @word = game.word
-  @letters = game.wrong_letters unless game.wrong_letters.empty?
-  @game_over = game.over?
+  @wrong_letters = game.wrong_letters unless game.wrong_letters.empty?
   @solution = game.solution
   @cheat = params['cheat']
   erb :'guess_the_word/index', layout: :'guess_the_word/layout'
