@@ -21,11 +21,21 @@ end
 
 post '/guess_the_word' do
   letter = params['letter']
-  if letter =~ /[a-z]/i
-    game.check(letter)
-    session[:message] = game.message
-  else
-    session[:message] = "That's not a letter! Try again."
+  word = params['word']
+  if word.nil?
+    if letter =~ /[a-z]/i
+      game.check(letter)
+      session[:message] = game.message
+    else
+      session[:message] = "That's not a letter! Try again."
+    end
+  elsif letter.nil?
+    if word =~ /[a-z]+/i
+      game.check_word(word)
+      session[:message] = game.message
+    else
+      session[:message] = "No empty words or special characters please! Try again."
+    end
   end
   redirect '/guess_the_word'
 end
