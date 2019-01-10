@@ -69,7 +69,6 @@ class Game
   end
 
   def new_letter(letter)
-    @guesses -= 1
     @tried_letters.push(letter)
     if solution.include?(letter)
       indexes = solution.length.times.select {|i| solution[i] == letter}
@@ -84,6 +83,7 @@ class Game
         set_message("Good guess!")
       end
     else
+      @guesses -= 1
       @wrong_letters.push(letter)
       set_message("Bad guess...")
     end
@@ -94,13 +94,13 @@ class Game
   end
 
   def new_word(guess)
-    @guesses -= 1
     if guess == solution.join
       @word = solution
       @victory = true
       set_message("Congratulations, you guessed the word!")
       return
     else
+      @guesses -= 1
       @wrong_words.push(guess)
       set_message("No, that's not the word!")
     end
