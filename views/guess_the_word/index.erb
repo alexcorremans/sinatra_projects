@@ -1,0 +1,29 @@
+<h1>Guess the Word</h1>
+<% if @message %>
+  <p><%= @message %></p>
+<% end %>
+<p><%= @word.join(" ") %></p>
+<% if !@game_ended %>
+  <p>Guesses left: <%= @guesses %></p>
+  <form action="/guess_the_word" method="post">
+    <p>Enter a letter: 
+    <input id="guess" type="text" name="letter" minlength="1" maxlength="1" size="4" autofocus>
+    <script>
+      if (!("autofocus" in document.createElement("input"))) {
+        document.getElementById("guess").focus();
+      }
+    </script>
+    <input type="submit" value="Guess!"></p>
+  </form>
+  <% if @letters %>
+    <p>Previous wrong choices: <%= @letters.join(", ") %></p>
+  <% end %>
+  <% if @cheat %>
+    <p>The solution is <%= @solution.join("")%>. Cheater!</p>
+  <% end %>
+<% elsif @game_over %>
+  <p>Game over! The word was: <%= @solution.join("")%></p>
+<% end %>
+<form action="/guess_the_word/new" method="post">
+  <input type="submit" value="New Game">
+</form>
